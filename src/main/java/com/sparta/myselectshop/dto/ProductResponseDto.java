@@ -19,6 +19,7 @@ public class ProductResponseDto {
     private int myprice;
     private List<FolderResponseDto> productFolderList = new ArrayList<>();
 
+
     public ProductResponseDto(Product product) {
         this.id = product.getId();
         this.title = product.getTitle();
