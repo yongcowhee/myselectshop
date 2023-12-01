@@ -84,10 +84,11 @@ public class UserController {
     public String kakaoLognin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         String token = kakaoService.kakaoLogin(code); // (JWT)
 
-        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, token);
+        // cookie에는 공백 문자가 들어갈 수 없어서 substring 해줌
+        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, token.substring(7));
         cookie.setPath("/");
         response.addCookie(cookie);
-
+        // 클라이언트가 따로 작업하지 않아도 쿠키에 바로 넣어줄 수 있음.
         return "redirect:/";
     }
 }
